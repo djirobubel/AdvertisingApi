@@ -29,7 +29,7 @@ namespace AdvertisingApi.CQRS.Queries.GetAdvertisement
 
             var advertisement = await _advertisementRepository.GetAdvertisementAsync(request.Title);
 
-            AdvertisementDto advertisementDto = new AdvertisementDto
+            var advertisementDto = new AdvertisementDto
             {
                 Id = advertisement.Id,
                 Title = advertisement.Title,
@@ -44,7 +44,7 @@ namespace AdvertisingApi.CQRS.Queries.GetAdvertisement
                 }).ToList()
             };
 
-            GetAdvertisementResult result = new GetAdvertisementResult
+            var result = new GetAdvertisementResult
             {
                 Id = advertisementDto.Id,
                 Title = advertisementDto.Title,
