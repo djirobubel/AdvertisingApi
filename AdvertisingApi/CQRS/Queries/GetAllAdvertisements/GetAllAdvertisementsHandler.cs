@@ -35,8 +35,8 @@ namespace AdvertisingApi.CQRS.Queries.GetAllAdvertisements
                 }).FirstOrDefault()
             }).ToList();
 
-            GetAllAdvertisementsResult result = new GetAllAdvertisementsResult
-            {
+            var result = new GetAllAdvertisementsResult
+            {  
                 Advertisements = advertisementsDto
             };
 
