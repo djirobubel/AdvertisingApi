@@ -1,6 +1,7 @@
 ﻿using AdvertisingApi.CQRS.Commands.CreateAdvertisement;
 using AdvertisingApi.CQRS.Queries.GetAdvertisement;
 using AdvertisingApi.CQRS.Queries.GetAllAdvertisements;
+using AdvertisingApi.Dto;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,8 +35,7 @@ namespace AdvertisingApi.Controllers
         public async Task<IActionResult> GetAdvertisement(string title)
         {
             var result = await _mediator.Send(new GetAdvertisementQuery(title));
-            return result.Existence == true ? Ok(result) : NotFound
-                ("Such advertisement does not exist");
+            return result.Existence == true ? Ok(result) : NotFound(new Error());
         }
 
         [HttpPost]
