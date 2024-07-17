@@ -36,7 +36,7 @@ namespace AdvertisingApi.CQRS.Queries.GetAdvertisement
                 Description = advertisement.Description,
                 Price = advertisement.Price,
                 CreationDate = advertisement.CreationDate,
-                PhotoUrls = advertisement.PhotoUrls.OrderBy(p => p.Url).Take(1).Select(p =>
+                PhotoUrls = advertisement.PhotoUrls.OrderBy(p => p.Url).Select(p =>
                 new PhotoUrlDto
                 {
                     Id = p.Id,
