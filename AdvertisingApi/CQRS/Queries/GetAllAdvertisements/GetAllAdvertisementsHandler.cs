@@ -27,8 +27,7 @@ namespace AdvertisingApi.CQRS.Queries.GetAllAdvertisements
                 Description = a.Description,
                 Price = a.Price,
                 CreationDate = a.CreationDate,
-                PhotoUrl = a.PhotoUrls.OrderBy(p => p.Url).Take(1)
-                .Select(p => new PhotoUrlDto
+                PhotoUrl = a.PhotoUrls.Select(p => new PhotoUrlDto
                 {
                     Id = p.Id,
                     Url = p.Url,
@@ -36,7 +35,7 @@ namespace AdvertisingApi.CQRS.Queries.GetAllAdvertisements
             }).ToList();
 
             var result = new GetAllAdvertisementsResult
-            {  
+            {
                 Advertisements = advertisementsDto
             };
 
