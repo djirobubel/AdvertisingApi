@@ -27,12 +27,12 @@ namespace AdvertisingApi.CQRS.Queries.GetAllAdvertisements
                 Description = a.Description,
                 Price = a.Price,
                 CreationDate = a.CreationDate,
-                PhotoUrls = a.PhotoUrls.OrderBy(p => p.Url).Take(1)
+                PhotoUrl = a.PhotoUrls.OrderBy(p => p.Url).Take(1)
                 .Select(p => new PhotoUrlDto
                 {
                     Id = p.Id,
                     Url = p.Url,
-                }).ToList()
+                }).FirstOrDefault()
             }).ToList();
 
             GetAllAdvertisementsResult result = new GetAllAdvertisementsResult

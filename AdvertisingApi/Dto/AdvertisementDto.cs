@@ -7,6 +7,6 @@
         public string? Description { get; set; }
         public decimal? Price { get; set; }
         public DateTime? CreationDate { get; set; }
-        public List<PhotoUrlDto>? PhotoUrls { get; set; }
+        public PhotoUrlDto? PhotoUrl { get; set; }
     }
 }
