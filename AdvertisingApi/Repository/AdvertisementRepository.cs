@@ -49,11 +49,13 @@ namespace AdvertisingApi.Repository
                 case "creationdate":
                     query = isAscending ? query.Include(p => p.PhotoUrls).OrderBy(a => a.CreationDate).
                         AsQueryable() : query.Include(p => p.PhotoUrls).
-                        OrderByDescending(a => a.CreationDate).AsQueryable();
+                            OrderByDescending(a => a.CreationDate).AsQueryable();
                     break;
 
                 default:
-                    throw new ArgumentException("Invalid sort by parameter");
+                    query = query.Include(p => p.PhotoUrls).OrderByDescending(a => a.CreationDate).
+                        AsQueryable();
+                    break;
             }
 
             return await query.Skip(skipNumber).Take(pageSize).ToListAsync();
