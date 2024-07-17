@@ -19,8 +19,8 @@ namespace AdvertisingApi.Data
            .WithMany(c => c.PhotoUrls)
            .HasForeignKey(u => u.AdvertisementId);
 
-            modelBuilder.Entity<Advertisement>().Property(t => t.Title).HasMaxLength(200);
-            modelBuilder.Entity<Advertisement>().Property(d => d.Description).HasMaxLength(1000);
+            modelBuilder.Entity<Advertisement>().Property(t => t.Title).HasMaxLength(256);
+            modelBuilder.Entity<Advertisement>().Property(d => d.Description).HasMaxLength(1024);
         }
     }
 }
