@@ -42,19 +42,17 @@ namespace AdvertisingApi.Repository
             {
                 case "price":
                     query = isAscending ? query.Include(p => p.PhotoUrls).OrderBy(a => a.Price).
-                        AsQueryable() : query.Include(p => p.PhotoUrls).OrderByDescending(a => a.Price).
-                            AsQueryable();
+                        AsQueryable() : query.Include(p => p.PhotoUrls).OrderByDescending(a => a.Price);
                     break;
 
                 case "creationdate":
                     query = isAscending ? query.Include(p => p.PhotoUrls).OrderBy(a => a.CreationDate).
                         AsQueryable() : query.Include(p => p.PhotoUrls).
-                            OrderByDescending(a => a.CreationDate).AsQueryable();
+                            OrderByDescending(a => a.CreationDate);
                     break;
 
                 default:
-                    query = query.Include(p => p.PhotoUrls).OrderByDescending(a => a.CreationDate).
-                        AsQueryable();
+                    query = query.Include(p => p.PhotoUrls).OrderByDescending(a => a.CreationDate);
                     break;
             }
 
