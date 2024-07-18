@@ -38,23 +38,16 @@ namespace AdvertisingApi.Repository
 
             IQueryable<Advertisement> query = _context.Advertisements;
 
-            switch (sortBy.ToLower())
+            query = sortBy.ToLower() switch
             {
-                case "price":
-                    query = isAscending ? query.Include(p => p.PhotoUrls).OrderBy(a => a.Price).
-                        AsQueryable() : query.Include(p => p.PhotoUrls).OrderByDescending(a => a.Price);
-                    break;
-
-                case "creationdate":
-                    query = isAscending ? query.Include(p => p.PhotoUrls).OrderBy(a => a.CreationDate).
-                        AsQueryable() : query.Include(p => p.PhotoUrls).
-                            OrderByDescending(a => a.CreationDate);
-                    break;
-
-                default:
-                    query = query.Include(p => p.PhotoUrls).OrderByDescending(a => a.CreationDate);
-                    break;
-            }
+                "price" => isAscending
+                    ? query.Include(p => p.PhotoUrls).OrderBy(a => a.Price)
+                    : query.Include(p => p.PhotoUrls).OrderByDescending(a => a.Price),
+                "creationdate" => isAscending
+                    ? query.Include(p => p.PhotoUrls).OrderBy(a => a.CreationDate)
+                    : query.Include(p => p.PhotoUrls).OrderByDescending(a => a.CreationDate),
+                _ => query.Include(p => p.PhotoUrls).OrderByDescending(a => a.CreationDate)
+            };
 
             return await query.Skip(skipNumber).Take(pageSize).ToListAsync();
         }
